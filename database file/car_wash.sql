@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 28, 2023 at 06:27 PM
+-- Generation Time: Mar 19, 2023 at 11:25 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -30,11 +30,10 @@ SET time_zone = "+00:00";
 CREATE TABLE `bookinglist` (
   `id` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
-  `address1` varchar(150) NOT NULL,
-  `area` varchar(150) NOT NULL,
-  `city` varchar(100) NOT NULL,
+  `serviceId` int(11) NOT NULL,
+  `providerId` int(11) NOT NULL,
   `vehicletypeId` int(11) NOT NULL,
-  `schedule` date NOT NULL,
+  `schedule` datetime NOT NULL,
   `totalAmount` float NOT NULL,
   `status` int(2) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -43,8 +42,8 @@ CREATE TABLE `bookinglist` (
 -- Dumping data for table `bookinglist`
 --
 
-INSERT INTO `bookinglist` (`id`, `userId`, `address1`, `area`, `city`, `vehicletypeId`, `schedule`, `totalAmount`, `status`) VALUES
-(1, 0, 'testsat', 'tsetse', 'Ahmedabad', 7, '2023-02-15', 12, 0);
+INSERT INTO `bookinglist` (`id`, `userId`, `serviceId`, `providerId`, `vehicletypeId`, `schedule`, `totalAmount`, `status`) VALUES
+(3, 11, 1, 2, 7, '2023-03-19 00:00:00', 200, 1);
 
 -- --------------------------------------------------------
 
@@ -63,6 +62,55 @@ CREATE TABLE `otp` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `price_list`
+--
+
+CREATE TABLE `price_list` (
+  `Id` int(11) NOT NULL,
+  `service_Id` int(11) NOT NULL,
+  `vehicle_Id` int(11) NOT NULL,
+  `price` float(15,2) NOT NULL DEFAULT 0.00,
+  `status` int(2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `price_list`
+--
+
+INSERT INTO `price_list` (`Id`, `service_Id`, `vehicle_Id`, `price`, `status`) VALUES
+(1, 1, 7, 200.00, 1),
+(2, 1, 7, 200.00, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `provider`
+--
+
+CREATE TABLE `provider` (
+  `Id` int(11) NOT NULL,
+  `Name` varchar(200) NOT NULL,
+  `Address` varchar(300) NOT NULL,
+  `mobile1` varchar(20) NOT NULL,
+  `mobile2` varchar(20) NOT NULL,
+  `email` varchar(200) NOT NULL,
+  `password` varchar(200) NOT NULL,
+  `gst` varchar(20) NOT NULL,
+  `map` text NOT NULL,
+  `isactive` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `provider`
+--
+
+INSERT INTO `provider` (`Id`, `Name`, `Address`, `mobile1`, `mobile2`, `email`, `password`, `gst`, `map`, `isactive`) VALUES
+(1, 'test', 'asdfadfassdf', '01234567890', '01234567890', 'test@gmail.com', '1234567', 'sdfadsf', 'asdfasdf', 1),
+(2, 'sdfasf', 'asdfa', 'asdf', 'asdfasf', 'manager@gmail.com', '123456', 'asdfasf', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.8418782090425!2d72.48632371428181!3d22.992841323209984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9ae5ba4f4187%3A0xead4f422ffa126be!2sLJ%20College%20Rd%2C%20Makarba%2C%20Ahmedabad%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1679142651985!5m2!1sen!2sin\" width=\"200\" height=\"200\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `services`
 --
 
@@ -70,8 +118,15 @@ CREATE TABLE `services` (
   `id` int(11) NOT NULL,
   `serviceName` varchar(50) NOT NULL,
   `description` text NOT NULL,
-  `isActive` bit(1) NOT NULL
+  `isActive` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `services`
+--
+
+INSERT INTO `services` (`id`, `serviceName`, `description`, `isActive`) VALUES
+(1, 'Car Washing 11', 'car washing is the proces of the clean the car', 1);
 
 -- --------------------------------------------------------
 
@@ -139,6 +194,18 @@ ALTER TABLE `otp`
   ADD PRIMARY KEY (`otp_id`);
 
 --
+-- Indexes for table `price_list`
+--
+ALTER TABLE `price_list`
+  ADD PRIMARY KEY (`Id`);
+
+--
+-- Indexes for table `provider`
+--
+ALTER TABLE `provider`
+  ADD PRIMARY KEY (`Id`);
+
+--
 -- Indexes for table `services`
 --
 ALTER TABLE `services`
@@ -164,7 +231,7 @@ ALTER TABLE `vehicle_list`
 -- AUTO_INCREMENT for table `bookinglist`
 --
 ALTER TABLE `bookinglist`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `otp`
@@ -173,10 +240,22 @@ ALTER TABLE `otp`
   MODIFY `otp_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `price_list`
+--
+ALTER TABLE `price_list`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `provider`
+--
+ALTER TABLE `provider`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `users`
