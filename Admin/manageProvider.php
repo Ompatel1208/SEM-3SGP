@@ -9,9 +9,9 @@ if(isset($_SESSION['Admin']))
 }
   include '../config/config.php';
 
-  if(isset($_GET['edit']))
+  if(isset($_GET['id']))
   {
-    $id = $_GET['edit'];
+    $id = $_GET['id'];
     $sql ="SELECT * FROM `provider` where `id`=$id";
     $res = mysqli_query($con,$sql) or die("error <br> $sql<br>".mysqli_error($con));
     $row = mysqli_fetch_row($res) or die("error");
@@ -66,10 +66,10 @@ if(isset($_SESSION['Admin']))
     <label for="inputPassword4" class="form-label">Mobile 2</label>
     <input type="text" class="form-control" id="inputPassword4" name="mobile2" value="<?php echo isset($mobile2) ? $mobile2 : ''; ?>" required>
   </div>
-  <div class="col-md-6">
+  <!-- <div class="col-md-6">
     <label for="inputCity" class="form-label">Map URL</label>
     <input type="text" class="form-control" id="inputCity" name="url" value="<?php echo isset($map) ? $map : ''; ?>" required>
-  </div>
+  </div> -->
   <div class="col-md-6">
   <label for="inputAddress2" class="form-label">Status</label>
                 <input type="hidden" name="providerId" value="<?php echo isset($id) ? $id : ''; ?>">

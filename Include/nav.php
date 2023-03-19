@@ -72,6 +72,8 @@
                <?php if(isset($_SESSION['IsLogin']) && $_SESSION['IsLogin']==true)
             { ?>
                 <a href="provider.php" class="nav-item nav-link  <?php if($page=="booking"){ echo "active";} ?>">Booking</a>
+                <a href="mybooking.php" class="nav-item nav-link  <?php if($page=="mybooking"){ echo "active";} ?>"> My Booking</a>
+               
                 <a href="feedback.php" class="nav-item nav-link  <?php if($page=="feedback"){ echo "active";} ?>">Feedback</a>
             <?php } ?>
             </div>

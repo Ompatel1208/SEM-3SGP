@@ -50,7 +50,7 @@
                                     </tfoot>
                                     <tbody>
                                         <?php
-$str="select * from price_list p inner join services s on s.id = p.service_Id inner join vehicle_list v on v.id= p.vehicle_Id";
+$str="select p.price,p.status,s.serviceName,v.name,p.Id from price_list p inner join services s on s.id = p.service_Id inner join vehicle_list v on v.id= p.vehicle_Id";
 $res=mysqli_query($con,$str) or die("error <br>". $sql.'<br>'. mysqli_error($con));
 $i=1;
 // echo implode(" ,", mysqli_fetch_row($res)); 
@@ -58,16 +58,16 @@ while($row = mysqli_fetch_row($res))
 {
     echo '<tr>';
     echo '<td>'.$i.'</td>';
-    echo '<td>'.$row[10].'</td>';
-    echo '<td>'.$row[6].'</td>';
     echo '<td>'.$row[3].'</td>';
-    if($row[5]==1)
+    echo '<td>'.$row[2].'</td>';
+    echo '<td>'.$row[0].'</td>';
+    if($row[1]=='1')
     {
         echo '<td><span class="badge bg-success">Active</span></td>';
     }else{
         echo '<td><span class="badge bg-danger">Inactive</span></td>';
     }
-    echo "<td><a href='editPrice.php?editPrice=".$row[0]."'><i class='fa fa-pen text-dark h4'></i></a>&nbsp;&nbsp; &nbsp;<a onClick=\"javascript: return confirm('Are you sure you want to Delete User');\" href='MasterFunction.php?pricedel=".$row[0]."'><i class='fa fa-trash-alt text-danger h4'></i></a></td>";
+    echo "<td><a href='editPrice.php?editPrice=".$row[4]."'><i class='fa fa-pen text-dark h4'></i></a>&nbsp;&nbsp; &nbsp;<a onClick=\"javascript: return confirm('Are you sure you want to Delete User');\" href='MasterFunction.php?pricedel=".$row[4]."'><i class='fa fa-trash-alt text-danger h4'></i></a></td>";
     echo '</tr>';
     $i = $i + 1;
 }

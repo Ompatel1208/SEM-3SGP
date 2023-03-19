@@ -124,7 +124,7 @@ if(isset($_GET['pricedel']))
 {
     $id = $_GET['pricedel'];
     $SQL = "DELETE FROM price_list where id='$id'";
-    $res=mysqli_query($con,$sql) or die ("not deleted");
+    $res=mysqli_query($con,$SQL) or die ("not deleted");
     if($res)
     {
         echo "<script> alert('Price Successfully Deleted ....!'); </script>";
@@ -162,6 +162,7 @@ if(isset($_POST['addPrice']))
     echo "<script> location.href='PriceList.php'; </script>"; 
 }
 
+// edit price 
 if(isset($_POST['editPrice']))
 {
     $serviceId = $_POST['service'];
@@ -190,7 +191,8 @@ if(isset($_POST['addProvider']))
     $email = $_POST['email'];
     $pass = $_POST['pass'];
     $gst = $_POST['gst'];
-    $map = $_POST['url'];
+    // $map = $_POST['url'];
+    $map ="test";
     $status = $_POST['status'];
     $sql = "INSERT INTO `provider`(`Name`, `Address`, `mobile1`, `mobile2`, `email`, `password`, `gst`, `map`, `isactive`) VALUES ('".$name."','".$address."','".$mobile1."','".$mobile2."','".$email."','".$pass."','".$gst."','".$map."','".$status."')";
     $res = mysqli_query($con,$sql) or die("Error");
@@ -213,15 +215,16 @@ if(isset($_POST['editProvider']))
     $email = $_POST['email'];
     $pass = $_POST['pass'];
     $gst = $_POST['gst'];
-    $map = $_POST['url'];
+    // $map = $_POST['url'];
+    $map ="test";
     $status = $_POST['status'];
+    $id = $_POST['providerId'];
     if($pass=="")
     {
-        $sql = "UPDATE `provider` SET `Name`='$name',`Address`='$address',`mobile1`='$mobile1',`mobile2`='$mobile2',`gst`='$gst',`map`='$map',`isactive`='$status' WHERE `Id`='$priceId'";
+        $sql = "UPDATE `provider` SET `Name`='$name',`Address`='$address',`mobile1`='$mobile1',`mobile2`='$mobile2',`gst`='$gst',`map`='$map',`isactive`='$status' WHERE `Id`='$id'";
     }else{
-        $sql = "UPDATE `provider` SET `Name`='$name',`Address`='$address',`mobile1`='$mobile1',`mobile2`='$mobile2',`password`='$pass',`gst`='$gst',`map`='$map',`isactive`='$status' WHERE `Id`='$priceId'";
+        $sql = "UPDATE `provider` SET `Name`='$name',`Address`='$address',`mobile1`='$mobile1',`mobile2`='$mobile2',`password`='$pass',`gst`='$gst',`map`='$map',`isactive`='$status' WHERE `Id`='$id'";
     }
-    
     $res=mysqli_query($con,$sql) or die ("not Updated");
     if($res)
     {
@@ -231,9 +234,22 @@ if(isset($_POST['editProvider']))
     }
     echo "<script> location.href='providers.php'; </script>"; 
 }
+// delete provider 
+if(isset($_GET['providerDel']))
+{
+    $id= $_GET['providerDel'];
+    $sql = "DELETE FROM `provider` WHERE `Id`=$id";
+    $res=mysqli_query($con,$sql) or die ("not Updated");
+    if($res)
+    {
+        echo "<script> alert('Provider Deleted Successfully ....!'); </script>";
+    }else{
+        echo "<script> alert('Somthing went wrong..'); </script>";
+    }
+    echo "<script> location.href='providers.php'; </script>"; 
+}
 
-
-/// Accept
+/// Accept booking
 if(isset($_GET['Accept']))
 {
     $id = $_GET['Accept'];
@@ -254,6 +270,7 @@ if(isset($_GET['Accept']))
     echo "<script> location.href='bookingList.php'; </script>"; 
 }
 
+// cancle booking 
 if(isset($_GET['cancelBook']))
 {
     $id = $_GET['cancelBook'];

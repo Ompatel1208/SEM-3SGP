@@ -13,7 +13,7 @@ $userId = $_SESSION['userId'];
 $sql = "SELECT  p.Name, b.schedule,v.name,   s.serviceName, b.totalAmount,b.status  FROM `bookinglist` b INNER JOIN services s on b.	serviceId = s.id INNER JOIN vehicle_list v on v.id=b.vehicletypeId INNER JOIN provider p on p.Id = b.providerId WHERE userId='$userId'";
 $res = mysqli_query($con,$sql) or die("Error <br> $sql <br>".mysqli_error($con));
 
-$page="booking";
+$page="mybooking";
 
 include 'Include/nav.php';
 ?>
