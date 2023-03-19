@@ -72,4 +72,34 @@ $mail = new PHPMailer(true);
   }
 
 }
+
+function SendBookingStatus($email,$Message)
+{
+  $mail = new PHPMailer(true);
+  $alert = '';
+  try{
+    $mail->isSMTP();
+    $mail->Host = 'smtp.gmail.com';
+    $mail->SMTPAuth = true;
+    $mail->Username = 'starkoapplications@gmail.com'; // Gmail address which you want to use as SMTP server
+    $mail->Password = 'fmxpelxgkymtmphw'; // Gmail address Password
+    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+    $mail->Port = '587';
+
+    $mail->setFrom('starkoapplications@gmail.com'); // Gmail address which you used as SMTP server
+    $mail->addAddress($email); // Email address where you want to receive emails (you can use any of your gmail address including the gmail address which you used as SMTP server)
+
+    $mail->isHTML(true);
+    $mail->Subject = 'Booking Status';
+    $mail->Body = $Message;
+
+    $mail->send();
+    $alert = true;
+    return $alert;
+   
+  } catch (Exception $e){
+    $alert = false;
+      return $alert;        
+  }
+}
 ?>

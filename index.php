@@ -14,7 +14,7 @@ include "Include/nav.php";
                             <div class="row align-items-center justify-content-center justify-content-lg-start">
                                 <div class="col-10 col-lg-7 text-center text-lg-start">
                                     <h6 class="text-white text-uppercase mb-3 animated slideInDown">// Car Servicing //</h6>
-                                    <h1 class="display-3 text-white mb-4 pb-3 animated slideInDown">Qualified Car Repair Service Center</h1>
+                                    <h1 class="display-3 text-white mb-4 pb-3 animated slideInDown">Exterior Washing</h1>
                                    
                                 </div>
                                 <div class="col-lg-5 d-none d-lg-flex animated zoomIn">
@@ -199,19 +199,19 @@ include "Include/nav.php";
                     <div class="nav w-100 nav-pills me-4">
                         <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4 active" data-bs-toggle="pill" data-bs-target="#tab-pane-1" type="button">
                             <i class="fa fa-car-side fa-2x me-3"></i>
-                            <h4 class="m-0">Diagnostic Test</h4>
+                            <h4 class="m-0">Exterior Washing</h4>
                         </button>
                         <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4" data-bs-toggle="pill" data-bs-target="#tab-pane-2" type="button">
                             <i class="fa fa-car fa-2x me-3"></i>
-                            <h4 class="m-0">Engine Servicing</h4>
+                            <h4 class="m-0">Foam Washing</h4>
                         </button>
                         <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-4" data-bs-toggle="pill" data-bs-target="#tab-pane-3" type="button">
                             <i class="fa fa-cog fa-2x me-3"></i>
-                            <h4 class="m-0">Tires Replacement</h4>
+                            <h4 class="m-0">Normal Washing</h4>
                         </button>
                         <button class="nav-link w-100 d-flex align-items-center text-start p-4 mb-0" data-bs-toggle="pill" data-bs-target="#tab-pane-4" type="button">
                             <i class="fa fa-oil-can fa-2x me-3"></i>
-                            <h4 class="m-0">Oil Changing</h4>
+                            <h4 class="m-0">Touchless Car Wash</h4>
                         </button>
                     </div>
                 </div>

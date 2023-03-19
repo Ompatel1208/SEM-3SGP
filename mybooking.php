@@ -10,21 +10,11 @@ if(isset($_SESSION['user']))
 }
 require 'config/config.php';
 $userId = $_SESSION['userId'];
-$sql = "SELECT * FROM users where Id='$userId'";
+$sql = "SELECT  p.Name, b.schedule,v.name,   s.serviceName, b.totalAmount,b.status  FROM `bookinglist` b INNER JOIN services s on b.	serviceId = s.id INNER JOIN vehicle_list v on v.id=b.vehicletypeId INNER JOIN provider p on p.Id = b.providerId WHERE userId='$userId'";
 $res = mysqli_query($con,$sql) or die("Error <br> $sql <br>".mysqli_error($con));
-$row = mysqli_fetch_row($res);
-$userName = $row['1']." ".$row['2'];
-$page="booking";
-if(isset($_GET['p']))
-{
-    $provider = $_GET['p'];
-    $sql = "SELECT * FROM provider WHERE Id =$provider";
-    $res = mysqli_query($con,$sql) or die("Error");
-    $row= mysqli_fetch_row($res);
 
-}else{
-    echo "<script> location.href='provider.php'; </script>";
-}
+$page="booking";
+
 include 'Include/nav.php';
 ?>
 
@@ -32,12 +22,12 @@ include 'Include/nav.php';
 <div class="container-fluid page-header mb-5 p-0" style="background-image: url(Assets/img/carousel-bg-1.jpg);">
     <div class="container-fluid page-header-inner py-5">
         <div class="container text-center">
-            <h1 class="display-3 text-white mb-3 animated slideInDown">Booking</h1>
+            <h1 class="display-3 text-white mb-3 animated slideInDown">My Booking</h1>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb justify-content-center text-uppercase">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
                     <li class="breadcrumb-item"><a href="#">Pages</a></li>
-                    <li class="breadcrumb-item text-white active" aria-current="page">Booking</li>
+                    <li class="breadcrumb-item text-white active" aria-current="page">My Booking</li>
                 </ol>
             </nav>
         </div>
@@ -47,53 +37,36 @@ include 'Include/nav.php';
 <!-- Service Start -->
 <div class="container-xxl py-5">
     <div class="container">
-        <form class="row g-3" method="post" action="function.php">
-            <div class="col-md-6">
-                <label for="inputEmail4" class="form-label">Email</label>
-                <input type="email" class="form-control" id="inputEmail4" readonly value="<?php echo $Email ; ?>">
-                <input type="hidden" name="userId" value="<?php echo $userId; ?>"/>
-            </div>
-            <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">Name</label>
-                <input type="text" class="form-control" id="inputPassword4" readonly value="<?php echo $userName; ?>">
-            </div>
-            <div class="col-md-6">
-                <label for="inputPassword4" class="form-label">provider Name</label>
-                <input type="hidden" name="provider" value="<?php echo $provider;?>">
-                <input type="text" class="form-control" id="inputPassword4" readonly value="<?php echo $row[1]; ?>">
-            </div>
-            <div class="col-md-6">
-                <label for="inputState" class="form-label">Vehicle Type</label>
-                <select id="vehicleType" class="form-select" name="vehicleType" required>
-                    <option selected>Choose...</option>
-                    <?php
-                $sql = "SELECT * FROM vehicle_list where status=1 AND delete_flag=0";
-                $res = mysqli_query($con,$sql) or die("Error <br> $sql <br>".mysqli_error($con));
-                while($row = mysqli_fetch_row($res))
-                {
-                    echo "<option value='".$row[0]."'>".$row[1]."</option>";
-                }
-                ?>
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label for="inputState" class="form-label">Select Service</label>
-                <select id="serviceType" class="form-select" name="service" required>
-                    <option selected>Choose...</option>   
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label for="inputZip" class="form-label">Schedule Date</label>
-                <input type="datetime-local" class="form-control" id="inputZip" name="bookingDate" required min="<?php echo date('Y-m-d H:i'); ?>">
-            </div>
-            <div class="col-md-6">
-            <label for="inputZip" class="form-label">Price</label>
-                <input type="text" class="form-control" id="price" name="price" required readonly>
-            </div>
-            <div class="col-12">
-                <input type="submit" class="btn btn-primary" name="newBook" value="Book" />
-            </div>
-        </form>
+    <h1 class="mb-5 text-center">My Booking details</h1>
+    <table id="example" class="table table-striped" style="width:100%">
+        <thead>
+            <tr>
+                <th>Provider Name</th>
+                <th>Schedule Date</th>
+                <th>Vehicle</th>
+                <th>Service</th>
+                <th>Price</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+while($row = mysqli_fetch_row($res))
+{
+   
+    $status = ($row[5]==0)? 'Pending' : (($row[5]==1)? 'Confirm' :'Cancel') ;
+    echo '<tr>
+    <td>'.$row[0].'</td>
+    <td>'.$row[1].'</td>
+    <td>'.$row[2].'</td>
+    <td>'.$row[3].'</td>
+    <td>'.$row[4].'</td>
+    <td>'.$status.'</td>
+</tr>';
+}
+?>
+            
+    </table>
     </div>
 </div>
 
@@ -164,51 +137,16 @@ include 'Include/nav.php';
     <script src="Assets/lib/tempusdominus/js/moment.min.js"></script>
     <script src="Assets/lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="Assets/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+    
+    <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js"></script>
     <!-- Template Javascript -->
     <script src="Assets/js/main.js"></script>
 
     <script>
-    $(document).ready(function(){
-        $('#serviceType').on('change',function(){
-           
-            var serviceType = $(this).val();
-            if(serviceType){
-              $.ajax({
-                url: "Ajex.php",
-                method: "POST",
-                data: { serviceType:serviceType },
-                success: function(html) {
-                  $('#price').val(html);                
-                }
-                });
-            }else{
-                $('#price').val('00');  
-            }
-        });
-    });
-
-    $(document).ready(function(){
-        $('#vehicleType').on('change',function(){
-            var vehicelId = $(this).val();
-            if(vehicelId){
-              $.ajax({
-                url: "Ajex.php",
-                method: "POST",
-                data: { vehicelId:vehicelId },
-                success: function(html) {
-                  
-                  $('#serviceType').html(html);
-                  $('#price').val('');
-                
-                }
-                });
-            }else{
-                $('#serviceType').html('<option value="">No Service avaiable for this vehicle</option>');
-            
-            }
-        });
-    });
+    $(document).ready(function () {
+    $('#example').DataTable();
+});
 
 </script>
 </body>

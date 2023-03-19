@@ -71,7 +71,7 @@
                 <a href="contact.php" class="nav-item nav-link  <?php if($page=="contact"){ echo "active";} ?>">Contact</a>
                <?php if(isset($_SESSION['IsLogin']) && $_SESSION['IsLogin']==true)
             { ?>
-                <a href="booking.php" class="nav-item nav-link  <?php if($page=="booking"){ echo "active";} ?>">Booking</a>
+                <a href="provider.php" class="nav-item nav-link  <?php if($page=="booking"){ echo "active";} ?>">Booking</a>
                 <a href="feedback.php" class="nav-item nav-link  <?php if($page=="feedback"){ echo "active";} ?>">Feedback</a>
             <?php } ?>
             </div>

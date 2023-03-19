@@ -7,7 +7,7 @@
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 Dashboard
                             </a>
-                            <a class="nav-link" href="">
+                            <a class="nav-link" href="bookingList.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tasks"></i></div>
                                 Booking List
                             </a>
@@ -19,6 +19,10 @@
                             <a class="nav-link" href="ServicesList.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-th-list"></i></div>
                                 Service List
+                            </a>
+                            <a class="nav-link" href="providers.php">
+                                <div class="sb-nav-link-icon"><i class="fas fa-th-list"></i></div>
+                                providers List
                             </a>
                             <a class="nav-link" href="PriceList.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-money-bill-alt"></i></div>
