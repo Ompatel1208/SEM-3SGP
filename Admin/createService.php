@@ -37,7 +37,7 @@ include 'Include/sidebar.php';
             <form class="row g-3" method="post" action="MasterFunction.php">
               <div class="col-12">
                 <label for="inputAddress" class="form-label">Name</label>
-                <input type="text" class="form-control" id="inputAddress" placeholder="Vehicle type" name="name"
+                <input type="text" class="form-control" id="inputAddress" placeholder="Service type" name="name"
                   required value="<?php echo isset($name) ? $name : ''; ?>">
               </div>
               <div class="col-12">

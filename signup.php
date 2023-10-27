@@ -7,6 +7,7 @@ if(isset($_POST['log']))
 {
   $email=trim($_POST['email']);
   $pass=trim($_POST['password']);
+  $hash = md5($pass);
   $fname= strtolower(trim($_POST['fname']));
   $bod=trim($_POST['bod']);;
   $mobile=trim($_POST['mobile']);
@@ -17,7 +18,7 @@ if(isset($_POST['log']))
        if(0==mysqli_num_rows($res))
         {
             $otp=rand(100000,999999);
-            $sql1="INSERT INTO `users`(`fname`, `lname`, `email`, `password`, `dob`, `city`, `mobile`) VALUES('".$fname."','".$lname."','".$email."','".$pass."','".$bod."','".$city."','".$mobile."')";       
+            $sql1="INSERT INTO `users`(`fname`, `lname`, `email`, `password`, `dob`, `city`, `mobile`) VALUES('".$fname."','".$lname."','".$email."','".$hash."','".$bod."','".$city."','".$mobile."')";       
             $res = mysqli_query($con, $sql1) or die("error not insert into user<br>".$sql1."<br>".mysqli_error($con));
             $userId=mysqli_insert_id($con);
             $_SESSION['userId']=$userId;

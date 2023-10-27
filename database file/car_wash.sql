@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 19, 2023 at 11:25 AM
+-- Generation Time: Apr 13, 2023 at 06:32 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -48,6 +48,26 @@ INSERT INTO `bookinglist` (`id`, `userId`, `serviceId`, `providerId`, `vehiclety
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `id` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
+  `message` varchar(500) NOT NULL,
+  `subject` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`id`, `userId`, `message`, `subject`) VALUES
+(3, 11, 'sfasf', 'sdf');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `otp`
 --
 
@@ -78,8 +98,7 @@ CREATE TABLE `price_list` (
 --
 
 INSERT INTO `price_list` (`Id`, `service_Id`, `vehicle_Id`, `price`, `status`) VALUES
-(1, 1, 7, 200.00, 1),
-(2, 1, 7, 200.00, 1);
+(2, 1, 7, 200.00, 0);
 
 -- --------------------------------------------------------
 
@@ -105,8 +124,7 @@ CREATE TABLE `provider` (
 --
 
 INSERT INTO `provider` (`Id`, `Name`, `Address`, `mobile1`, `mobile2`, `email`, `password`, `gst`, `map`, `isactive`) VALUES
-(1, 'test', 'asdfadfassdf', '01234567890', '01234567890', 'test@gmail.com', '1234567', 'sdfadsf', 'asdfasdf', 1),
-(2, 'sdfasf', 'asdfa', 'asdf', 'asdfasf', 'manager@gmail.com', '123456', 'asdfasf', '<iframe src=\"https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3672.8418782090425!2d72.48632371428181!3d22.992841323209984!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e9ae5ba4f4187%3A0xead4f422ffa126be!2sLJ%20College%20Rd%2C%20Makarba%2C%20Ahmedabad%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1679142651985!5m2!1sen!2sin\" width=\"200\" height=\"200\" style=\"border:0;\" allowfullscreen=\"\" loading=\"lazy\" referrerpolicy=\"no-referrer-when-downgrade\"></iframe>', 1);
+(4, 'prodivder', 'testsat', '1234567898', '1234567890', 'provider@gmail.com', '123456', 'SSFsdfasdsf', 'test', 1);
 
 -- --------------------------------------------------------
 
@@ -153,7 +171,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`Id`, `fname`, `lname`, `email`, `password`, `dob`, `city`, `mobile`, `role`, `status`) VALUES
 (11, 'test', 'test', 'soniparth598@gmail.com', '123456', '2023-02-11', 'bhavnagar', '1234567890', 1, 1),
-(12, 'admin', 'admin', 'admin@gmail.com', 'admin', '2023-02-01', 'Ahmedabad', '1234567890', 2, 1);
+(12, 'admin', 'admin', 'admin@gmail.com', 'admin', '2023-02-01', 'Ahmedabad', '1234567890', 2, 1),
+(13, 'prodivder', 'prodivder', 'provider@gmail.com', '123456', '2023-04-13', 'testsat', '1234567898', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -185,6 +204,12 @@ INSERT INTO `vehicle_list` (`id`, `name`, `status`, `delete_flag`, `date_created
 -- Indexes for table `bookinglist`
 --
 ALTER TABLE `bookinglist`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `feedback`
+--
+ALTER TABLE `feedback`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -234,6 +259,12 @@ ALTER TABLE `bookinglist`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `otp`
 --
 ALTER TABLE `otp`
@@ -249,7 +280,7 @@ ALTER TABLE `price_list`
 -- AUTO_INCREMENT for table `provider`
 --
 ALTER TABLE `provider`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `services`
@@ -261,7 +292,7 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `vehicle_list`

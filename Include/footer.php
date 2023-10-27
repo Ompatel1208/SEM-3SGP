@@ -4,7 +4,7 @@
             <div class="row g-5">
                 <div class="col-lg-4 col-md-6">
                     <h4 class="text-light mb-4">Address</h4>
-                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>government polytechnic gandhinagar</p>
+                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>Government Polytechnic Gandhinagar</p>
                     <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+91 7990442235</p>
                     <p class="mb-2"><i class="fa fa-envelope me-3"></i>starkoapplications@gmail.com</p>
                    
@@ -18,11 +18,11 @@
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <h4 class="text-light mb-4">Services</h4>
-                    <a class="btn btn-link" href="">Diagnostic Test</a>
-                    <a class="btn btn-link" href="">Engine Servicing</a>
-                    <a class="btn btn-link" href="">Tires Replacement</a>
+                    
+                    <a class="btn btn-link" href="">Engine Cleaning</a>
+                    <a class="btn btn-link" href="">Tires Waxing</a>
                     <a class="btn btn-link" href="">Oil Changing</a>
-                    <a class="btn btn-link" href="">Vacuam Cleaning</a>
+                    <a class="btn btn-link" href="">Vaccum Cleaning</a>
                 </div>
              
             </div>
@@ -31,7 +31,7 @@
             <div class="copyright">
                 <div class="row">
                     <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                        &copy; <a class="border-bottom" href="#">Site Name</a>, All Right Reserved.
+                        &copy; <a class="border-bottom" href="#">Starko</a>, All Right Reserved.
 
                       
                     </div>
@@ -40,7 +40,7 @@
                             <a href="">Home</a>
                             <a href="">Cookies</a>
                             <a href="">Help</a>
-                            <a href="">FQAs</a>
+                            <a href="">FAQs</a>
                         </div>
                     </div>
                 </div>

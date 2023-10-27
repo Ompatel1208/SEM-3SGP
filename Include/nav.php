@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>CarServ - Car Repair HTML Template</title>
+    <title>Karz-Spa - Car Repair HTML Template</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
@@ -49,7 +49,7 @@
     <!-- Navbar Start -->
     <nav class="navbar navbar-expand-lg bg-white navbar-light shadow sticky-top p-0">
         <a href="index.php" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
-            <h2 class="m-0 text-primary"><i class="fa fa-car me-3"></i>CarServ</h2>
+            <h2 class="m-0 text-primary"><i class="fa fa-car me-3"></i>Karz-Spa</h2>
         </a>
         <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="navbar-toggler-icon"></span>
@@ -75,6 +75,7 @@
                 <a href="mybooking.php" class="nav-item nav-link  <?php if($page=="mybooking"){ echo "active";} ?>"> My Booking</a>
                
                 <a href="feedback.php" class="nav-item nav-link  <?php if($page=="feedback"){ echo "active";} ?>">Feedback</a>
+                <a href="changepass.php" class="nav-item nav-link  <?php if($page=="password"){ echo "active";} ?>"> Change Password</a>
             <?php } ?>
             </div>
             <?php

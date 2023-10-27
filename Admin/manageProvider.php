@@ -48,7 +48,7 @@ if(isset($_SESSION['Admin']))
   </div>
   <div class="col-md-6">
     <label for="inputEmail4" class="form-label">Email</label>
-    <input type="email" class="form-control" id="inputEmail4" name="email" value="<?php echo isset($gst) ? $gst : ''; ?>" required readonly>
+    <input type="email" class="form-control" id="inputEmail4" name="email" value="<?php echo isset($email) ? $email : ''; ?>" required <?php echo isset($email) ? 'readonly' : ''; ?> >
   </div>
   <div class="col-md-6">
     <label for="inputPassword4" class="form-label">Password</label>

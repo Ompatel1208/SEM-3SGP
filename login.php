@@ -5,7 +5,7 @@ if(isset($_POST['log']))
 {
   
     $email=trim($_POST['aEmail']);
-    $pass=trim($_POST['aPassword']);
+    $pass=md5(trim($_POST['aPassword']));
    
 
     $str="select * from users where email='".$email."' and password='".$pass."' and status=1";
@@ -23,7 +23,12 @@ if(isset($_POST['log']))
       {
         $_SESSION['Admin'] = true;
         echo "<script> location.href='Admin/index.php'; </script>";
-      }else{
+      }else if($row['8']==3)
+      {
+        $_SESSION['provider'] = true;
+        echo "<script> location.href='Providers/index.php'; </script>";
+      }
+      else{
         $_SESSION['user'] = true;
         echo "<script> location.href='index.php'; </script>";
       }

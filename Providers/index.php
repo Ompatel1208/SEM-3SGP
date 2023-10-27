@@ -1,6 +1,6 @@
-  <?php
+<?php
   session_start();
-if(isset($_SESSION['Admin']))
+if(isset($_SESSION['provider']))
 {
     $useremail = $_SESSION['Email'];
 } else 
@@ -11,7 +11,6 @@ include '../config/config.php';
 include 'Include/head.php';
 include 'Include/sidebar.php';
 ?>
-            
                 <main>
                     <div class="container-fluid px-4">
                         <h1 class="mt-4">Dashboard</h1>
@@ -19,36 +18,36 @@ include 'Include/sidebar.php';
                             <li class="breadcrumb-item active">Dashboard</li>
                         </ol>
                         <div class="row">
-                            <div class="col-xl-3 col-md-6">
+                        <div class="col-xl-3 col-md-6">
                                 <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Vehicle Types</div>
+                                    <div class="card-body">Pending Appointment</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="vehicleList.php">View Details</a>
+                                        <a class="small text-white stretched-link" href="bookingList.php?complete=0">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Total Services</div>
+                                    <div class="card-body">Completed Booking</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="ServicesList.php">View Details</a>
+                                        <a class="small text-white stretched-link" href="bookingList.php?complete=1">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> 
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-success text-white mb-4">
-                                    <div class="card-body">Appiontment</div>
+                                    <div class="card-body">Cancel Bookings</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="bookingList.php">View Details</a>
+                                        <a class="small text-white stretched-link" href="bookingList.php?complete=2">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-md-6">
                                 <div class="card bg-danger text-white mb-4">
-                                    <div class="card-body">Finished Bookings</div>
+                                    <div class="card-body">Bookings</div>
                                     <div class="card-footer d-flex align-items-center justify-content-between">
                                         <a class="small text-white stretched-link" href="bookingList.php">View Details</a>
                                         <div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -74,7 +73,7 @@ include 'Include/sidebar.php';
                                             <th>Mobile</th>
                                         </tr>
                                     </thead>
-                                   
+                                  
                                     <tbody>
                                         <?php
 $str="select * from users where status=1 and role=1 order by id desc limit 15";

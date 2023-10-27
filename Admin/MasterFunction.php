@@ -1,5 +1,6 @@
 <?php
 session_start();
+date_default_timezone_set("Asia/Kolkata");
 include '../config/config.php';
 require '../sendemail.php';
 if(isset($_SESSION['Admin']))
@@ -42,7 +43,7 @@ if(isset($_POST['editVehicleType']))
     {
         echo "<script> alert('Vehicle type updated successfully.'); </script>";
     }else{
-        echo "<script> alert('Somthing went wrong..'); </script>";
+        echo "<script> alert('Something went wrong..'); </script>";
     }
    echo "<script> location.href='vehicleList.php'; </script>";  
 }
@@ -57,7 +58,7 @@ if(isset($_GET['del']))
     {
         echo "<script> alert('vehicle type Successfully Deleted ....!'); </script>";
     }else{
-        echo "<script> alert('Somthing went wrong..');</script>";
+        echo "<script> alert('Something went wrong..');</script>";
     }
     echo "<script> location.href='vehicleList.php'; </script>";  
   }
@@ -74,7 +75,7 @@ if(isset($_GET['delserverice']))
     {
         echo "<script> alert('services Successfully Deleted ....!'); </script>";
     }else{
-        echo "<script>  alert('Somthing went wrong..'); </script> ";
+        echo "<script>  alert('Something went wrong..'); </script> ";
     }
     echo "<script> location.href='ServicesList.php'; </script>";  
   }
@@ -112,7 +113,7 @@ if(isset($_POST['editService']))
     {
         echo "<script> alert('Vehicle type updated successfully.'); </script>";
     }else{
-        echo "<script> alert('Somthing went wrong..'); </script>";
+        echo "<script> alert('Something went wrong..'); </script>";
         echo mysqli_affected_rows($con);
         die("error");
     }
@@ -129,7 +130,7 @@ if(isset($_GET['pricedel']))
     {
         echo "<script> alert('Price Successfully Deleted ....!'); </script>";
     }else{
-        echo "<script> alert('Somthing went wrong..'); </script>";
+        echo "<script> alert('Something went wrong..'); </script>";
     }
     echo "<script> location.href='PriceList.php'; </script>"; 
 
@@ -154,7 +155,7 @@ if(isset($_POST['addPrice']))
     {
         echo "<script> alert('Price Successfully Added ....!'); </script>";
     }else{
-        echo "<script> alert('Somthing went wrong..'); </script>";
+        echo "<script> alert('Something went wrong..'); </script>";
     }
 }else{
     echo "<script> alert('Already Price Added For this service and vehicle'); </script>";
@@ -176,7 +177,7 @@ if(isset($_POST['editPrice']))
     {
         echo "<script> alert('Price Successfully Updated ....!'); </script>";
     }else{
-        echo "<script> alert('Somthing went wrong..'); </script>";
+        echo "<script> alert('Something went wrong..'); </script>";
     }
     echo "<script> location.href='PriceList.php'; </script>"; 
 }
@@ -189,18 +190,29 @@ if(isset($_POST['addProvider']))
     $mobile1 = $_POST['mobile1'];
     $mobile2 = $_POST['mobile2'];
     $email = $_POST['email'];
-    $pass = $_POST['pass'];
+    $pass = md5($_POST['pass']);
     $gst = $_POST['gst'];
     // $map = $_POST['url'];
+    $sql = "SELECT * FROM `users` WHERE `email`='$email'";
+    $res = mysqli_query($con,$sql) or die("Error");
+    if(mysqli_num_rows($res)!=0)
+    {
+        echo "<script> alert('Email id is already registredsd please use another email'); </script>";
+        echo "<script> location.href='providers.php'; </script>"; 
+
+    }
     $map ="test";
     $status = $_POST['status'];
     $sql = "INSERT INTO `provider`(`Name`, `Address`, `mobile1`, `mobile2`, `email`, `password`, `gst`, `map`, `isactive`) VALUES ('".$name."','".$address."','".$mobile1."','".$mobile2."','".$email."','".$pass."','".$gst."','".$map."','".$status."')";
     $res = mysqli_query($con,$sql) or die("Error");
+    $sql = "INSERT INTO `users`(`fname`, `lname`, `email`, `password`, `dob`, `city`, `mobile`, `role`, `status`) VALUES ('".$name."','".$name."','".$email."','".$pass."','".date("Y-m-d")."','".$address."','".$mobile1."','3','1')";
+    $res = mysqli_query($con,$sql) or die("Error");
+    
     if($res)
     {
         echo "<script> alert('Provider Successfully Added ....!'); </script>";
     }else{
-        echo "<script> alert('Somthing went wrong..'); </script>";
+        echo "<script> alert('Something went wrong..'); </script>";
     }
     echo "<script> location.href='providers.php'; </script>"; 
 }
@@ -228,9 +240,9 @@ if(isset($_POST['editProvider']))
     $res=mysqli_query($con,$sql) or die ("not Updated");
     if($res)
     {
-        echo "<script> alert('Provider Successfully Updated ....!'); </script>";
+        echo "<script> alert('Provider Successfully Updated....!'); </script>";
     }else{
-        echo "<script> alert('Somthing went wrong..'); </script>";
+        echo "<script> alert('Something went wrong..'); </script>";
     }
     echo "<script> location.href='providers.php'; </script>"; 
 }
@@ -242,9 +254,9 @@ if(isset($_GET['providerDel']))
     $res=mysqli_query($con,$sql) or die ("not Updated");
     if($res)
     {
-        echo "<script> alert('Provider Deleted Successfully ....!'); </script>";
+        echo "<script> alert('Provider Deleted Successfully....!'); </script>";
     }else{
-        echo "<script> alert('Somthing went wrong..'); </script>";
+        echo "<script> alert('Something went wrong..'); </script>";
     }
     echo "<script> location.href='providers.php'; </script>"; 
 }
@@ -261,11 +273,11 @@ if(isset($_GET['Accept']))
         $res = mysqli_query($con,$sql) or die("Error");
         $row = mysqli_fetch_row($res);
 
-        $message = "Your Booking is Confimr Please Reach at Schedule time for you car Wash you have to pay service charge at service station, your booking number is $id";
-        echo "<script> alert('Booking Is Confirm'); </script>";
+        $message = "Your Booking is Confirmed.Please Reach at the alloted slot of time.You have to pay amount at service station, your booking number is $id";
+        echo "<script> alert('Booking Is Confirm. HAPPY WASHING!'); </script>";
         SendBookingStatus($row[0],$message);
     }else{
-        echo "<script> alert('Somthing went wrong..'); </script>";
+        echo "<script> alert('Something went wrong..'); </script>";
     }
     echo "<script> location.href='bookingList.php'; </script>"; 
 }
@@ -282,11 +294,11 @@ if(isset($_GET['cancelBook']))
         $res = mysqli_query($con,$sql) or die("Error");
         $row = mysqli_fetch_row($res);
 
-        $message = "your booking number is $id appointment was cancel due to some reason please book your appointment on another day ,sorry for inconvenience";
-        echo "<script> alert('Booking Is Cancel'); </script>";
+        $message = "your booking number is $id Appointment was cancelled due to some technical purpose, please book your appointment on another day,sorry for inconvenience";
+        echo "<script> alert('Booking Cancelled'); </script>";
         SendBookingStatus($row[0],$message);
     }else{
-        echo "<script> alert('Somthing went wrong..'); </script>";
+        echo "<script> alert('Something went wrong..'); </script>";
     }
     echo "<script> location.href='bookingList.php'; </script>"; 
 }

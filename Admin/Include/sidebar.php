@@ -14,7 +14,7 @@
                             <div class="sb-sidenav-menu-heading">Maintenance</div>
                             <a class="nav-link" href="vehicleList.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-car"></i></div>
-                                Vehicle type
+                                Vehicle types
                             </a>
                             <a class="nav-link" href="ServicesList.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-th-list"></i></div>
@@ -22,11 +22,11 @@
                             </a>
                             <a class="nav-link" href="providers.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-th-list"></i></div>
-                                providers List
+                                Providers List
                             </a>
                             <a class="nav-link" href="PriceList.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-money-bill-alt"></i></div>
-                                Price
+                                Price List
                             </a>
                             <a class="nav-link" href="userList.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-users-cog"></i></div>
